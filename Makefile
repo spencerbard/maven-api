@@ -17,7 +17,10 @@ run-local-dev:
 	FLASK_APP=api flask run
 
 build:
-	docker build -t maven-api .
+	docker build -t sbard/maven-api .
 
 run:
-	docker run -p 127.0.0.1:5000:5000 maven-api
+	docker run -p 127.0.0.1:5000:5000 sbard/maven-api
+
+push:
+	docker push sbard/maven-api
