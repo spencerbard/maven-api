@@ -4,9 +4,6 @@ black:
 flake8:
 	flake8 api
 
-isort:
-	isort -rc --atomic api
-
 pytest:
 	pytest api
 
@@ -20,7 +17,16 @@ build:
 	docker build -t sbard/maven-api .
 
 run:
-	docker run -p 127.0.0.1:5000:5000 sbard/maven-api
+	docker run -p 5000:5000 sbard/maven-api
 
 push:
 	docker push sbard/maven-api
+
+post:
+	@curl -H "Content-Type: application/json" --data '{"number": ${NUM}}' --request POST 127.0.0.1:5000
+
+put:
+	@curl -H "Content-Type: application/json" --data '{"number": ${NUM}, "increment_value": ${INC}}' --request PUT 127.0.0.1:5000
+
+run-remote:
+	docker run --rm -p 5000:5000 docker.io/sbard/maven-api
