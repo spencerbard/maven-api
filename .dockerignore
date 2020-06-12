@@ -1,0 +1,4 @@
+.git
+api/env
+api/**.pytest_cache
+api/**__pycache__
